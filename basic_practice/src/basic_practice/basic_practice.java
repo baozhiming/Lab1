@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
 public class basic_practice{
-	//存储结点
+	//存储结点 使用哈希表存储图的结构//
 	static HashMap<String,Edge> headNode = new HashMap<String,Edge>();
 
 	public static void main(String[] args) throws IOException{
@@ -425,7 +425,7 @@ public class basic_practice{
 		 return overWords;
 	}
 }
-
+//辅助类，用来表示图的下一个节点以及边上的权值//
 class Edge
 {
 	HashMap<String,Integer> EdgeNode = new HashMap<String,Integer>();
