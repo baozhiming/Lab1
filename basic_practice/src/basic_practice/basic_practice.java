@@ -23,7 +23,7 @@ public class basic_practice{
 		String str;
 		/**********文本内容***********************************/
 		String line = " ";                           
-		
+		//读入到字符串中//
 		while((str=bufr.readLine())!=null)
 		{
 			str = str.replaceAll("[^a-zA-Z]", " ");

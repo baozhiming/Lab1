@@ -70,7 +70,7 @@ public class GraphViz
    /**
     * The dir. where temporary files will be created.
     */
-   //private static String TEMP_DIR = "/tmp"; // Linux
+ 
    private static String TEMP_DIR = "F:\\ming"; // Windows
 
 /**
