@@ -10,7 +10,7 @@ import java.io.*;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-
+//commit on B2
 public class basic_practice{
 	//存储结点 使用哈希表存储图的结构//
 	static HashMap<String,Edge> headNode = new HashMap<String,Edge>();
