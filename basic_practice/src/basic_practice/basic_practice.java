@@ -10,7 +10,7 @@ import java.io.*;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-
+//haha
 //头文件//
 
 public class basic_practice{
