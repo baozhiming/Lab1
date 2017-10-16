@@ -10,11 +10,16 @@ import java.io.*;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-//haha
+
 //头文件//
 
 public class basic_practice{
 	//存储结点 使用哈希表存储图的结构//
+
+
+public class basic_practice{
+	//存储结点
+
 	static HashMap<String,Edge> headNode = new HashMap<String,Edge>();
 
 	public static void main(String[] args) throws IOException{
@@ -25,7 +30,11 @@ public class basic_practice{
 		String str;
 		/**********文本内容***********************************/
 		String line = " ";                           
+
 		//读入到字符串中//
+
+		
+
 		while((str=bufr.readLine())!=null)
 		{
 			str = str.replaceAll("[^a-zA-Z]", " ");
@@ -427,7 +436,10 @@ public class basic_practice{
 		 return overWords;
 	}
 }
+
 //辅助类，用来表示图的下一个节点以及边上的权值//
+
+
 class Edge
 {
 	HashMap<String,Integer> EdgeNode = new HashMap<String,Integer>();
@@ -454,4 +466,9 @@ class preNode
 	{
 		return toNodeStep;
 	}
+
 }
+
+}
+//fufeng1
+

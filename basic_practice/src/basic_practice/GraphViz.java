@@ -65,6 +65,7 @@ import java.io.InputStreamReader;
  * @version v0.1, 2003/12/04 (December) -- first release
  * @author  Laszlo Szathmary (<a href="jabba.laci@gmail.com">jabba.laci@gmail.com</a>)
  */
+
 //dfd
  //生成图的辅助类
 
@@ -73,14 +74,21 @@ public class GraphViz
    /**
     * The dir. where temporary files will be created.
     */
- 
+
+   //private static String TEMP_DIR = "/tmp"; // Linux
+
    private static String TEMP_DIR = "F:\\ming"; // Windows
 
 /**
     * Where is your dot program located? It will be called externally.
     */
+
   // private static String DOT = "/usr/bin/dot"; // Linux   
    private static String DOT = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe"; // Windows   下载的graphviz中dot文件的位置
+
+  // private static String DOT = "/usr/bin/dot"; // Linux
+   private static String DOT = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe"; // Windows
+
 
 /**
     * The source of the graph written in dot language.
@@ -283,4 +291,8 @@ return img_stream;   }
     this.graph = sb;
    }
    
+
 } // end of class GraphViz
+
+} // end of class GraphViz
+
