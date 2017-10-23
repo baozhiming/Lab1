@@ -7,7 +7,7 @@ import java.io.*;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-
+/////////////////////////
 
 public class basic_practice {
     //瀛樺偍缁撶偣 浣跨敤鍝堝笇琛ㄥ瓨鍌ㄥ浘鐨勭粨鏋�//
