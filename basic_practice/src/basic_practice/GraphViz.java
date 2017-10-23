@@ -63,7 +63,9 @@ import java.io.InputStreamReader;
  * to read the graph from a text file
  * @version v0.2, 2010/07/22 (July) -- bug fix
  * @version v0.1, 2003/12/04 (December) -- first release
- * @author  Laszlo Szathmary (<a href="jabba.laci@gmail.com">jabba.laci@gmail.com</a>)
+ * @author  Laszlo Szathmary 
+ * (<a href="jabba.laci@gmail.com">
+ * jabba.laci@gmail.com</a>)
  */
 public class GraphViz
 {
@@ -71,13 +73,13 @@ public class GraphViz
     * The dir. where temporary files will be created.
     */
    //private static String TEMP_DIR = "/tmp"; // Linux
-   private static String TEMP_DIR = "F:\\ming"; // Windows
+   private static String tempdir = "F:\\ming"; // Windows
 
 /**
     * Where is your dot program located? It will be called externally.
     */
-  // private static String DOT = "/usr/bin/dot"; // Linux   
-   private static String DOT = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe"; // Windows   下载的graphviz中dot文件的位置
+  // private static String dOT = "/usr/bin/dot"; // Linux   
+   private static String dot = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe"; // Windows   涓嬭浇鐨刧raphviz涓璬ot鏂囦欢鐨勪綅缃�
 
 /**
     * The source of the graph written in dot language.
@@ -126,19 +128,19 @@ public class GraphViz
     * @param type Type of the output image to be produced, e.g.: gif, dot, fig, pdf, ps, svg, png.
     * @return A byte array containing the image of the graph.
     */
-   public byte[] getGraph(String dot_source, String type)
+   public byte[] getGraph(final String dotsource, final String type)
    {
       File dot;
-      byte[] img_stream = null;
+      byte[] imgstream = null;
    
       try {
-         dot = writeDotSourceToFile(dot_source);
+         dot = writeDotSourceToFile(dotsource);
          if (dot != null)
          {
-            img_stream = get_img_stream(dot, type);
+            imgstream = getimgstream(dot, type);
             if (dot.delete() == false) 
                System.err.println("Warning: " + dot.getAbsolutePath() + " could not be deleted!");
-            return img_stream;
+            return imgstream;
          }
          return null;
       } catch (java.io.IOException ioe) { return null; }
@@ -150,7 +152,7 @@ public class GraphViz
     * @param file  Name of the file to where we want to write.
     * @return Success: 1, Failure: -1
     */
-   public int writeGraphToFile(byte[] img, String file)
+   public final int writeGraphToFile(byte[] img, String file)
    {
       File to = new File(file);
       return writeGraphToFile(img, to);
@@ -162,7 +164,7 @@ public class GraphViz
     * @param to    A File object to where we want to write.
     * @return Success: 1, Failure: -1
     */
-   public int writeGraphToFile(byte[] img, File to)
+   public int writeGraphToFile(final byte[] img, final File to)
    {
       try {
          FileOutputStream fos = new FileOutputStream(to);
@@ -179,41 +181,44 @@ public class GraphViz
     * @param type Type of the output image to be produced, e.g.: gif, dot, fig, pdf, ps, svg, png.
     * @return The image of the graph in .gif format.
     */
-   private byte[] get_img_stream(File dot, String type)
+   private byte[] getimgstream(final File dot, String type)
    {
       File img;
-      byte[] img_stream = null;
+      byte[] imgstream = null;
 
-try {
-         img = File.createTempFile("graph_", "."+type, new File(GraphViz.TEMP_DIR));
+      try {
+         img = File.createTempFile("graph_", "."+type, new File(GraphViz.tempdir));
          Runtime rt = Runtime.getRuntime();
          
          // patch by Mike Chenault
-         String[] args = {DOT, "-T"+type, dot.getAbsolutePath(), "-o", img.getAbsolutePath()};
-         Process p = rt.exec(args);
+         String[] args = {dot, "-T"+type, dot.getAbsolutePath(), "-o", img.getAbsolutePath()};
+         final Process p = rt.exec(args);
          
          p.waitFor();
 
 FileInputStream in = new FileInputStream(img.getAbsolutePath());
-         img_stream = new byte[in.available()];
-         in.read(img_stream);
+         imgstream = new byte[in.available()];
+         in.read(imgstream);
          // Close it if we need to
          if( in != null ) in.close();
-
-if (img.delete() == false) 
+         boolean flag=img.delete();
+         if (flag == false) 
             System.err.println("Warning: " + img.getAbsolutePath() + " could not be deleted!");
       }
       catch (java.io.IOException ioe) {
-         System.err.println("Error:    in I/O processing of tempfile in dir " + GraphViz.TEMP_DIR+"\n");
+         System.err.println("Error:    in I/O processing of tempfile in dir " + GraphViz.tempdir+"\n");
          System.err.println("       or in calling external command");
          ioe.printStackTrace();
       }
       catch (java.lang.InterruptedException ie) {
          System.err.println("Error: the execution of the external program was interrupted");
          ie.printStackTrace();
+         }
+
       }
 
-return img_stream;   }
+return imgstream;  
+}
    /**
     * Writes the source of the graph in a file, and returns the written file
     * as a File object.
@@ -224,14 +229,14 @@ return img_stream;   }
    {
       File temp;
       try {
-         temp = File.createTempFile("graph_", ".dot.tmp", new File(GraphViz.TEMP_DIR));
-         FileWriter fout = new FileWriter(temp);
+         temp = File.createTempFile("graph_", ".dot.tmp", new File(GraphViz.tempdir));
+         final FileWriter fout = new FileWriter(temp);
          fout.write(str);
          fout.close();
       }
       catch (Exception e) {
          System.err.println("Error: I/O error while writing the dot source to temp file!");
-         return null;
+         //return null;
       }
       return temp;
    }
@@ -240,7 +245,7 @@ return img_stream;   }
     * Returns a string that is used to start a graph.
     * @return A string to open a graph.
     */
-   public String start_graph() {
+   public String startgraph() {
       return "digraph G {" ;
    }
 
@@ -248,7 +253,7 @@ return img_stream;   }
     * Returns a string that is used to end a graph.
     * @return A string to close a graph.
     */
-   public String end_graph() {
+   public String endgraph() {
       return "}";
    }
 
@@ -260,7 +265,7 @@ return img_stream;   }
     */
    public void readSource(String input)
    {
-    StringBuilder sb = new StringBuilder();
+    StringBuilder stringB = new StringBuilder();
     
     try
     {
@@ -275,6 +280,7 @@ return img_stream;   }
     } 
     catch (Exception e) {
      System.err.println("Error: " + e.getMessage());
+     e.printStackTrace();
     }
     
     this.graph = sb;
