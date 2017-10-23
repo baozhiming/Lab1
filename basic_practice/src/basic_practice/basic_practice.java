@@ -24,8 +24,7 @@ public class Basic_practice{
         /**********鏂囨湰鍐呭***********************************/
         String line = " ";                           
         
-        while((str=bufr.readLine())!=null)
-        {
+        while((str=bufr.readLine())!=null) {
             str = str.replaceAll("[^a-zA-Z]", " ");
             str = str.replaceAll("\t"," ");
             str = str.replaceAll("\r"," ");
@@ -41,54 +40,21 @@ public class Basic_practice{
         bufr.close();
     
         /********************************灏嗘枃鏈緭鍏ュ埌鍥句腑*********************************/ 
-        for(int i=0;i<arrayList.length-1;i++)
-        {
-            if(!headNode.containsKey(arrayList[i]))
-            {
+        for(int i=0;i<arrayList.length-1;i++) {
+            if(!headNode.containsKey(arrayList[i])) {
                  Edge tempNode = new Edge(arrayList[i+1],1) ;
                 headNode.put(arrayList[i],tempNode);
-            }
-            else
-            {
-                if(!headNode.get(arrayList[i]).edgeNode.containsKey(arrayList[i+1]))
-                {
+            } else {
+                 if(!headNode.get(arrayList[i]).edgeNode.containsKey(arrayList[i+1])) {
                     headNode.get(arrayList[i]).edgeNode.put(arrayList[i+1], 1);
-                }
-                else
-                {
+                } else {
                     Integer nowEdge =  headNode.get(arrayList[i]).edgeNode.get(arrayList[i+1]);
                     headNode.get(arrayList[i]).edgeNode.put(arrayList[i+1], nowEdge+1);
-                } 
-            }
-            
-        }
-        headNode.put(arrayList[arrayList.length-1],null);
-        
-        /**************************灏唄ashMap杈撳嚭妫�鏌ユ槸鍚︽纭�*****************/
-        /*Iterator iterator = headNode.keySet().iterator();
-        while(iterator.hasNext())
-        {
-            
-            Object key = iterator.next();
-            if(headNode.get(key) != null)
-            {
-              Iterator iterator1 = headNode.get(key).EdgeNode.keySet().iterator();
-            
-              while(iterator1.hasNext())
-              {
-                  Object key1 = iterator1.next();
-                  System.out.print(key + " ");
-                  System.out.print(key1 + " ");
-                  System.out.println(headNode.get(key).EdgeNode.get(key1));
+                  } 
               }
             }
-            else
-            {
-                  System.out.println((arrayList[arrayList.length-1] + " " + "null!"));
-            }
-            
-            
-        }*/
+        headNode.put(arrayList[arrayList.length-1],null);
+
         /****************************杈撳嚭鏈夊悜鍥�***********************************/   
         showDirectedGraph(); 
         

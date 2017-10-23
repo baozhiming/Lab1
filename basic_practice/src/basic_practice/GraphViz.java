@@ -72,13 +72,11 @@ public class GraphViz
    /**
     * The dir. where temporary files will be created.
     */
-   //private static String TEMP_DIR = "/tmp"; // Linux
    private static String tempdir = "F:\\ming"; // Windows
 
 /**
     * Where is your dot program located? It will be called externally.
     */
-  // private static String dOT = "/usr/bin/dot"; // Linux   
    private static String dot = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe"; // Windows   涓嬭浇鐨刧raphviz涓璬ot鏂囦欢鐨勪綅缃�
 
 /**
