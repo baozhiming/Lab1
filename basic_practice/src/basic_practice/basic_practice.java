@@ -11,7 +11,12 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
+
+public class basic_practice {
+
+
 public class Basic_practice{
+
     //瀛樺偍缁撶偣 浣跨敤鍝堝笇琛ㄥ瓨鍌ㄥ浘鐨勭粨鏋�//
     static HashMap<String,Edge> headNode = new HashMap<String,Edge>();
 
@@ -22,26 +27,42 @@ public class Basic_practice{
         BufferedReader bufr = new BufferedReader(new InputStreamReader(fis));
         String str;
         /**********鏂囨湰鍐呭***********************************/
+
+        String line = " ";
+
+        while((str=bufr.readLine())!=null)
+        {
+
         String line = " ";                           
         
         while((str=bufr.readLine())!=null) {
+        master
             str = str.replaceAll("[^a-zA-Z]", " ");
             str = str.replaceAll("\t"," ");
             str = str.replaceAll("\r"," ");
             line = line + str+ " ";
-        }       
+        }
         line = line.toLowerCase();
         line = line.trim();
         System.out.println("---------------琛屽瓧绗︿覆------------------------");
         System.out.println(line);
-        
-        /************************灏嗘枃浠朵腑鐨勫唴瀹硅鍏rrayList鏁扮粍涓�*******************/    
+
+        /************************灏嗘枃浠朵腑鐨勫唴瀹硅鍏rrayList鏁扮粍涓�*******************/
         String[] arrayList = line.split("\\s+") ;
         bufr.close();
+ master
+
+        /********************************灏嗘枃鏈緭鍏ュ埌鍥句腑*********************************/
+        for(int i=0;i<arrayList.length-1;i++)
+        {
+            if(!headNode.containsKey(arrayList[i]))
+            {
+
     
         /********************************灏嗘枃鏈緭鍏ュ埌鍥句腑*********************************/ 
         for(int i=0;i<arrayList.length-1;i++) {
             if(!headNode.containsKey(arrayList[i])) {
+ master
                  Edge tempNode = new Edge(arrayList[i+1],1) ;
                 headNode.put(arrayList[i],tempNode);
             } else {
@@ -50,6 +71,40 @@ public class Basic_practice{
                 } else {
                     Integer nowEdge =  headNode.get(arrayList[i]).edgeNode.get(arrayList[i+1]);
                     headNode.get(arrayList[i]).edgeNode.put(arrayList[i+1], nowEdge+1);
+                }
+            }
+
+        }
+        headNode.put(arrayList[arrayList.length-1],null);
+
+        /**************************灏唄ashMap杈撳嚭妫�鏌ユ槸鍚︽纭�*****************/
+        /*Iterator iterator = headNode.keySet().iterator();
+        while(iterator.hasNext())
+        {
+
+            Object key = iterator.next();
+            if(headNode.get(key) != null)
+            {
+              Iterator iterator1 = headNode.get(key).EdgeNode.keySet().iterator();
+
+              while(iterator1.hasNext())
+              {
+                  Object key1 = iterator1.next();
+                  System.out.print(key + " ");
+                  System.out.print(key1 + " ");
+                  System.out.println(headNode.get(key).EdgeNode.get(key1));
+              }
+            }
+            else
+            {
+                  System.out.println((arrayList[arrayList.length-1] + " " + "null!"));
+            }
+
+
+        }*/
+        /****************************杈撳嚭鏈夊悜鍥�***********************************/
+        showDirectedGraph();
+
                   } 
               }
             }
@@ -57,7 +112,7 @@ public class Basic_practice{
 
         /****************************杈撳嚭鏈夊悜鍥�***********************************/   
         showDirectedGraph(); 
-        
+       
         System.out.println("3 锛� 妗ユ帴璇�                  4 : 鏂版枃鏈�                          5锛氭渶鐭矾寰�                      6锛氶殢鏈烘父璧�");
         boolean orcontinue = true;
         while(orcontinue == true)
@@ -68,7 +123,7 @@ public class Basic_practice{
             switch(oner)
             {
             case 3:
-                /****************************妗ユ帴璇�***************************************/      
+                /****************************妗ユ帴璇�***************************************/
                 System.out.println("璇疯緭鍏ヨ鏌ユ壘妗ユ帴璇嶇殑涓や釜瀛楃涓诧細  ");
                 Scanner s = new Scanner(System.in);
                 String word1 = s.next();
@@ -77,7 +132,7 @@ public class Basic_practice{
                 System.out.println(result.trim());
                 break;
             case 4:
-                /*****************************鐢熸垚鏂版枃鏈�**********************************/       
+                /*****************************鐢熸垚鏂版枃鏈�**********************************/
                 System.out.print("璇疯緭鍏ユ柊鏂囨湰 锛� ");
                 Scanner st = new Scanner(System.in);
                 String newLine = st.nextLine();
@@ -93,15 +148,15 @@ public class Basic_practice{
                 System.out.println(calcShortestPath(startNode,endNode));
                 break;
             case 6:
-                /*****************************闅忔満娓歌蛋************************************/       
+                /*****************************闅忔満娓歌蛋************************************/
                 System.out.println(randomWalk());
                 break;
             }
         }
 
-        
+
     }
-    
+
     //=======灞曠ず鏈夊悜鍥�==========//
     static void showDirectedGraph()
     {
@@ -129,7 +184,7 @@ public class Basic_practice{
         File out = new File("F:\\ming\\out1." + type);    // Windows
         gv.writeGraphToFile( gv.getGraph( gv.getDotSource(), type ), out );
     }
-    
+
     //=================================妗ユ帴璇嶅嚱鏁�================================//
     static String queryBridgeWords(String word1,String word2)
     {
@@ -148,7 +203,7 @@ public class Basic_practice{
                 if(key == word2)
                 {
                     return noBridgeWords;
-                }               
+                }
                 else
                 {
                     if(headNode.get(key) != null)
@@ -157,7 +212,7 @@ public class Basic_practice{
                         if(containKey)
                         {
                             bridgeWords = bridgeWords + key + " ";
-                            ++number;                       
+                            ++number;
                         }
                     }
                 }
@@ -166,15 +221,15 @@ public class Basic_practice{
             {
                 return noBridgeWords;
             }
-        }       
+        }
         else
         {
             return noWords;
         }
-        
+
         return bridgeWords;
     }
-        
+
     //===================================杈撳嚭瑕佸啓鐨勬柊鏂囨湰===========================================//
     static String generateNewText(String inputText)
     {
@@ -203,14 +258,14 @@ public class Basic_practice{
                     lineBack = lineBack + " " + aa[(int)(Math.random()*(aa.length))] + " "+ newLineArray[i+1];
                 }
             }
-                
-                
-            
+
+
+
         }
         return lineBack;
     }
-    
-    
+
+
     //=========================================================鏈�鐭矾寰�========================================/
     static String calcShortestPath(String startNode, String endNode)
     {
@@ -269,7 +324,7 @@ public class Basic_practice{
           //  }
             outNode.add(start);
         }
-       /*****************************************灏嗗緱鍒扮殑nodeStep杈撳嚭鏈�鐭矾寰�***********************************/       
+       /*****************************************灏嗗緱鍒扮殑nodeStep杈撳嚭鏈�鐭矾寰�***********************************/
        if(headNode.get(startNode) == null)
        {
            return "Can not reach it!";
@@ -283,11 +338,11 @@ public class Basic_practice{
        resultStep.addFirst(endNode);
        while(tempNode != startNode)
        {
-           
+
            resultStep.addFirst(nodeStep.get(tempNode).getpreNodeStr());
            tempNode = nodeStep.get(tempNode).getpreNodeStr();
        }                                                                 /******灏嗗瓨鍌ㄥソ鐨刪ashMap浠ュ弽鍚戦『搴忓皢鍏惰緭鍑哄苟瀛樺叆result瀛楃涓�*****/
-       
+
        /**********灏嗘渶鐭矾寰勫瓨鏀惧湪minStep瀛楃涓蹭腑骞惰緭鍑�******/
        String minStep = resultStep.removeFirst();
        String minStepMap = minStep;
@@ -319,7 +374,7 @@ public class Basic_practice{
            String b = iter.next();
            gv.addln(minStepMap + "->" + b + "[color=red]");
            minStepMap = b;
-       }   
+       }
        gv.addln(gv.end_graph());
      // System.out.println(gv.getDotSource());
        String type = "gif";
@@ -328,12 +383,12 @@ public class Basic_practice{
 
        return minStep;
     }
-    
-    
+
+
      //========================================闅忔満娓歌蛋========================//
     static String randomWalk()
     {
-        
+
         String[] keys = headNode.keySet().toArray(new String[0]);
         HashMap<Integer,String> overWord= new HashMap<Integer,String>();
         Random random = new Random();
@@ -346,7 +401,7 @@ public class Basic_practice{
             String[] nextKeys = headNode.get(randomKey).edgeNode.keySet().toArray(new String[0]);
             Random nextRandom = new Random();
             String nextKey = nextKeys[nextRandom.nextInt(nextKeys.length)];
-            
+
             if(!overWord.containsValue(randomKey + " " + nextKey))
             {
                 overWord.put(i,randomKey + " " + nextKey);
