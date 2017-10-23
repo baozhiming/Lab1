@@ -27,10 +27,16 @@ public class Basic_practice{
         BufferedReader bufr = new BufferedReader(new InputStreamReader(fis));
         String str;
         /**********鏂囨湰鍐呭***********************************/
+
         String line = " ";
 
         while((str=bufr.readLine())!=null)
         {
+
+        String line = " ";                           
+        
+        while((str=bufr.readLine())!=null) {
+        master
             str = str.replaceAll("[^a-zA-Z]", " ");
             str = str.replaceAll("\t"," ");
             str = str.replaceAll("\r"," ");
@@ -44,23 +50,25 @@ public class Basic_practice{
         /************************灏嗘枃浠朵腑鐨勫唴瀹硅鍏rrayList鏁扮粍涓�*******************/
         String[] arrayList = line.split("\\s+") ;
         bufr.close();
+ master
 
         /********************************灏嗘枃鏈緭鍏ュ埌鍥句腑*********************************/
         for(int i=0;i<arrayList.length-1;i++)
         {
             if(!headNode.containsKey(arrayList[i]))
             {
+
+    
+        /********************************灏嗘枃鏈緭鍏ュ埌鍥句腑*********************************/ 
+        for(int i=0;i<arrayList.length-1;i++) {
+            if(!headNode.containsKey(arrayList[i])) {
+ master
                  Edge tempNode = new Edge(arrayList[i+1],1) ;
                 headNode.put(arrayList[i],tempNode);
-            }
-            else
-            {
-                if(!headNode.get(arrayList[i]).edgeNode.containsKey(arrayList[i+1]))
-                {
+            } else {
+                 if(!headNode.get(arrayList[i]).edgeNode.containsKey(arrayList[i+1])) {
                     headNode.get(arrayList[i]).edgeNode.put(arrayList[i+1], 1);
-                }
-                else
-                {
+                } else {
                     Integer nowEdge =  headNode.get(arrayList[i]).edgeNode.get(arrayList[i+1]);
                     headNode.get(arrayList[i]).edgeNode.put(arrayList[i+1], nowEdge+1);
                 }
@@ -97,6 +105,14 @@ public class Basic_practice{
         /****************************杈撳嚭鏈夊悜鍥�***********************************/
         showDirectedGraph();
 
+                  } 
+              }
+            }
+        headNode.put(arrayList[arrayList.length-1],null);
+
+        /****************************杈撳嚭鏈夊悜鍥�***********************************/   
+        showDirectedGraph(); 
+       
         System.out.println("3 锛� 妗ユ帴璇�                  4 : 鏂版枃鏈�                          5锛氭渶鐭矾寰�                      6锛氶殢鏈烘父璧�");
         boolean orcontinue = true;
         while(orcontinue == true)
