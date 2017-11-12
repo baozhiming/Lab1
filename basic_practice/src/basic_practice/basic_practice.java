@@ -1,9 +1,5 @@
 package basic_practice;
 import java.io.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.lang.Math;
 import java.util.*;
 import java.util.LinkedList;
@@ -15,6 +11,59 @@ public class basic_practice {
 	static HashMap<String,Edge> headNode = new HashMap<String,Edge>();
 
 	public static void main(String[] args) throws IOException{
+		
+		/****************************将文本内容存入图中***************************/
+		saveMap();
+		
+        /****************************输出有向图***********************************/	
+	    showDirectedGraph(); 
+	    
+	    System.out.println("3 ： 桥接词                  4 : 新文本                          5：最短路径                      6：随机游走");
+	    boolean Orcontinue = true;
+	    while(Orcontinue == true)
+	    {
+	    	System.out.print("please input the number where can come true : ");
+		    Scanner oner = new Scanner(System.in);
+		    int Oner = oner.nextInt();			
+	    	switch(Oner)
+	    	{
+	    	case 3:
+	            /****************************桥接词***************************************/		
+	    		System.out.println("请输入要查找桥接词的两个字符串：  ");
+	    		Scanner s = new Scanner(System.in);
+	    		String Word1 = s.next();
+	    		String Word2 = s.next();
+	    		String result = queryBridgeWords(Word1, Word2);
+	    		System.out.println(result.trim());
+	    		break;
+	    	case 4:
+	    		/*****************************生成新文本**********************************/		
+	    		System.out.print("请输入新文本 ： ");
+	    		Scanner st = new Scanner(System.in);
+	    		String NewLine = st.nextLine();
+	    		NewLine = NewLine.toLowerCase().trim();
+	    		System.out.println(generateNewText(NewLine).trim());
+	    		break;
+	    	case 5:
+	            /*****************************最短距离************************************/
+	    		System.out.println("请输入要计算最短距离的单词： ");
+	    		Scanner sn = new Scanner(System.in);
+	    		String startNode = sn.next();
+	    		String endNode = sn.next();
+	    		System.out.println(calcShortestPath(startNode,endNode));
+	    		break;
+	    	case 6:
+	            /*****************************随机游走************************************/		
+	    		System.out.println(randomWalk());
+	    		break;
+	    	}
+	    }
+
+	    
+	}
+	
+    //==================================================将为文本内容存入hashmap中================================//
+	static void saveMap() throws IOException {
 		/*****************读取文本内容*************************/
 		File file = new File("F:\\baoming.txt");
 		FileInputStream fis = new FileInputStream(file);
@@ -32,8 +81,8 @@ public class basic_practice {
 		}		
 		line = line.toLowerCase();
 		line = line.trim();
-		System.out.println("---------------行字符串------------------------");
-		System.out.println(line);
+		//System.out.println("---------------行字符串------------------------");
+		//System.out.println(line);
 		
         /************************将文件中的内容读入arrayList数组中*******************/	
 		String[] arrayList = line.split("\\s+") ;
@@ -88,51 +137,6 @@ public class basic_practice {
 			
 			
 	    }*/
-        /****************************输出有向图***********************************/	
-	    showDirectedGraph(); 
-	    
-	    System.out.println("3 ： 桥接词                  4 : 新文本                          5：最短路径                      6：随机游走");
-	    boolean Orcontinue = true;
-	    while(Orcontinue == true)
-	    {
-	    	System.out.print("please input the number where can come true : ");
-		    Scanner oner = new Scanner(System.in);
-		    int Oner = oner.nextInt();			
-	    	switch(Oner)
-	    	{
-	    	case 3:
-	            /****************************桥接词***************************************/		
-	    		System.out.println("请输入要查找桥接词的两个字符串：  ");
-	    		Scanner s = new Scanner(System.in);
-	    		String Word1 = s.next();
-	    		String Word2 = s.next();
-	    		String result = queryBridgeWords(Word1, Word2);
-	    		System.out.println(result.trim());
-	    		break;
-	    	case 4:
-	    		/*****************************生成新文本**********************************/		
-	    		System.out.print("请输入新文本 ： ");
-	    		Scanner st = new Scanner(System.in);
-	    		String NewLine = st.nextLine();
-	    		NewLine = NewLine.toLowerCase().trim();
-	    		System.out.println(generateNewText(NewLine).trim());
-	    		break;
-	    	case 5:
-	            /*****************************最短距离************************************/
-	    		System.out.println("请输入要计算最短距离的单词： ");
-	    		Scanner sn = new Scanner(System.in);
-	    		String startNode = sn.next();
-	    		String endNode = sn.next();
-	    		System.out.println(calcShortestPath(startNode,endNode));
-	    		break;
-	    	case 6:
-	            /*****************************随机游走************************************/		
-	    		System.out.println(randomWalk());
-	    		break;
-	    	}
-	    }
-
-	    
 	}
 	
     //==================================================展示有向图===============================================//
@@ -204,7 +208,7 @@ public class basic_practice {
 		{
 			return NoWords;
 		}
-		
+		bridgeWords = bridgeWords.substring(0, bridgeWords.length()-1);
 		return bridgeWords;
 	}
 		
